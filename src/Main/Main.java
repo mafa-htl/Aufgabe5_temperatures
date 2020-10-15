@@ -2,6 +2,7 @@ package Main;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -28,31 +29,34 @@ public class Main extends Application {
         box_main.setSpacing(10);
         box_main.setPadding(new Insets(25));
 
-        Label label_celsius = new Label("Grad Celsius");
+        Label label_celsius = new Label("Degree Celsius");
         box_main.getChildren().add(label_celsius);
 
         TextField field_celsius = new TextField();
         field_celsius.setMinWidth(250);
-        field_celsius.setPromptText("Bitte geben Sie einen Wert ein ...");
+        field_celsius.setPromptText("Please enter a value ...");
         box_main.getChildren().add(field_celsius);
 
-        Label label_fahrenheit = new Label("Grad Fahrenheit");
+        Label label_fahrenheit = new Label("Degree Fahrenheit");
         box_main.getChildren().add(label_fahrenheit);
 
         TextField field_fahrenheit = new TextField();
         field_fahrenheit.setMinWidth(250);
-        field_fahrenheit.setPromptText("Bitte geben Sie einen Wert ein ...");
+        field_fahrenheit.setPromptText("Please enter a value ...");
         box_main.getChildren().add(field_fahrenheit);
 
         Button c_to_f = new Button("Convert C -> F");
-        c_to_f.addEventHandler(MouseEvent.MOUSE_CLICKED, c_to_f_handler);
+        //c_to_f.addEventHandler(MouseEvent.MOUSE_CLICKED, c_to_f_handler);
         box_main.getChildren().add(c_to_f);
 
         Button f_to_c = new Button("Convert F -> C");
-        f_to_c.addEventHandler(MouseEvent.MOUSE_CLICKED, f_to_c_handler);
+        //f_to_c.addEventHandler(MouseEvent.MOUSE_CLICKED, f_to_c_handler);
         box_main.getChildren().add(f_to_c);
 
-
+        Scene scene = new Scene(box_main);
+        stage.setTitle("Temp. Converter");
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
