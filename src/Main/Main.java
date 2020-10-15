@@ -1,6 +1,7 @@
 package Main;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -45,8 +46,33 @@ public class Main extends Application {
         field_fahrenheit.setPromptText("Please enter a value ...");
         box_main.getChildren().add(field_fahrenheit);
 
+
+        EventHandler<MouseEvent> c_to_f_handler = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+                try{
+                    double tempC = Double.parseDouble(field_celsius.getText());
+
+                    if(tempC < -273.15)     //absoluter Nullpunkt kann nicht überschritten werden
+                        throw new java.lang.RuntimeException();
+
+                    Double tempF = tempC * 1.8 + 32;
+                    tempF = tempF * 100;    //zum Runden der Kommastellen
+                    Math.round(tempF);
+                    tempF = tempF / 100;
+                    field_fahrenheit.setText(tempF.toString());
+                }
+                catch(Exception e){
+                    field_celsius.setText("Please enter a valid number");
+                }
+
+            }
+        };
+
+
         Button c_to_f = new Button("Convert C -> F");
-        //c_to_f.addEventHandler(MouseEvent.MOUSE_CLICKED, c_to_f_handler);
+        c_to_f.addEventHandler(MouseEvent.MOUSE_CLICKED, c_to_f_handler);
         box_main.getChildren().add(c_to_f);
 
         Button f_to_c = new Button("Convert F -> C");
