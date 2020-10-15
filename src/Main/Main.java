@@ -75,8 +75,33 @@ public class Main extends Application {
         c_to_f.addEventHandler(MouseEvent.MOUSE_CLICKED, c_to_f_handler);
         box_main.getChildren().add(c_to_f);
 
+
+        EventHandler<MouseEvent> f_to_c_handler = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+                try{
+                    double tempF = Double.parseDouble(field_fahrenheit.getText());
+
+                    if(tempF < -459.67)         //kann nicht kleiner als absoluter Nullpunkt sein
+                        throw new java.lang.RuntimeException();
+
+                    double tempC = (tempF - 32) / 1.8;
+                    tempC = tempC / 100;    //runden vom Wert
+                    Math.round(tempC);
+                    tempC = tempC * 100;
+                    field_celsius.setText(Double.toString(tempC));
+                }
+                catch (Exception e){
+                    field_fahrenheit.setText("Please enter a valid number");
+                }
+
+            }
+        };
+
+
         Button f_to_c = new Button("Convert F -> C");
-        //f_to_c.addEventHandler(MouseEvent.MOUSE_CLICKED, f_to_c_handler);
+        f_to_c.addEventHandler(MouseEvent.MOUSE_CLICKED, f_to_c_handler);
         box_main.getChildren().add(f_to_c);
 
         Scene scene = new Scene(box_main);
