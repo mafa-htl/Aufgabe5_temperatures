@@ -87,9 +87,9 @@ public class Main extends Application {
                         throw new java.lang.RuntimeException();
 
                     double tempC = (tempF - 32) / 1.8;
-                    tempC = tempC / 100;    //runden vom Wert
+                    tempC = tempC * 100;    //runden vom Wert
                     Math.round(tempC);
-                    tempC = tempC * 100;
+                    tempC = tempC / 100;
                     field_celsius.setText(Double.toString(tempC));
                 }
                 catch (Exception e){
